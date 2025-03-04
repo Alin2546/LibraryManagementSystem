@@ -18,7 +18,7 @@ public class BooksService {
     }
 
     public Book findBookById(@RequestParam int id) {
-        return booksRepository.findById(id).orElseThrow();
+        return booksRepository.findById(id).orElseThrow(() -> new RuntimeException("User with id:" + id + " not found"));
     }
 
     public Book saveBook(Book book) {
@@ -29,6 +29,14 @@ public class BooksService {
         Book book = findBookById(id);
         book.setName(newTitle);
         booksRepository.save(book);
+    }
+
+    public Book findByAuthor(String authorName) {
+        return booksRepository.findByAuthor(authorName).orElseThrow(() -> new RuntimeException("Book author with name: " + authorName + " not found"));
+    }
+
+    public Book findByName(String name) {
+        return booksRepository.findByName(name).orElseThrow(() -> new RuntimeException("Book: " + name + " not found"));
     }
 
 

@@ -14,7 +14,7 @@ import java.util.List;
 public class BooksController {
     private final BooksService booksService;
 
-    @GetMapping
+    @GetMapping("/findAll")
     public List<Book> getBooks() {
         return booksService.getBooks();
     }
@@ -22,6 +22,16 @@ public class BooksController {
     @GetMapping("{id}")
     public Book getById(@PathVariable int id) {
         return booksService.findBookById(id);
+    }
+
+    @GetMapping("/findByName")
+    public Book findByName(@RequestParam String name) {
+        return booksService.findByName(name);
+    }
+
+    @GetMapping("/findByAuthor")
+    public Book findByAuthor(@RequestParam String author) {
+        return booksService.findByAuthor(author);
     }
 
     @PostMapping("/saveBook")

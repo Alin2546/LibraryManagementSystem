@@ -14,7 +14,7 @@ import java.util.List;
 public class UserController {
     private final UsersService usersService;
 
-    @GetMapping
+    @GetMapping("/findAll")
     public List<User> getUsers() {
         return usersService.getUsers();
     }
@@ -22,6 +22,11 @@ public class UserController {
     @GetMapping("{id}")
     public User getById(@PathVariable int id) {
         return usersService.getUserById(id);
+    }
+
+    @GetMapping("/find")
+    public User fingUserByName(@RequestParam String name) {
+        return usersService.findByName(name);
     }
 
     @PostMapping("/saveUser")

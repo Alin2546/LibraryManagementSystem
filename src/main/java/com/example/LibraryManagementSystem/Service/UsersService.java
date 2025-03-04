@@ -5,6 +5,7 @@ import com.example.LibraryManagementSystem.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
 
 @Service
@@ -28,6 +29,10 @@ public class UsersService {
         User user = getUserById(id);
         user.setPassword(newPassword);
         userRepository.save(user);
+    }
+
+    public User findByName(String name) {
+        return userRepository.findByName(name).orElseThrow(() -> new RuntimeException("User: " + name + " not found"));
     }
 
 }
