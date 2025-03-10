@@ -39,4 +39,9 @@ public class UserController {
         usersService.updateUserPassword(id, newPassword);
     }
 
+    @PostMapping("/login")
+    public String login (@RequestBody User user){
+        return usersService.verify(user);
+    }
+
 }
